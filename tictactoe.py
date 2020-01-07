@@ -46,7 +46,7 @@ def ganar(tablero):
     return False
 
 # jugar con un robot
-def robot(tablero):
+def robot(tablero, n):
     while True:
         r = randint(1,9)
         if validar(r) and validar(tablero[r-1]):
@@ -64,9 +64,10 @@ print("1. 1 Player (vas a jugar con la consola)")
 print("2. 2 Players")
 modo = input(">> ")
 
-
+n = 0
 
 while True:
+    n+=1
     if ganar(tablero) or ganar(tablero) == "empate":
         break
 
@@ -101,7 +102,7 @@ while True:
             input()
     # robot pensando
     elif p == -1 and int(modo) == 1:
-        r = robot(tablero)
+        r = robot(tablero,n)
         print("Pensando...")
         time.sleep(randint(1,5))
         tablero[r-1] = "O"
