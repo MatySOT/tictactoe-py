@@ -60,24 +60,8 @@ tablero = [1,2,3,
 
 
 p = 1
-system("cls")
-color = raw_input("Ingrese codigo de color: ")
-system("color "+ color)
-system("cls")
-system("title _-Seleccion de modo de juego - TTT by Matyaz and Turk-_")
-print """
-  ______               __                        __  __   
- /      \             /  |                      /  |/  |  
-/$$$$$$  |  ______   _$$ |_     ______         _$$ |$$ |_ 
-$$ | _$$/  /      \ / $$   |   /      \       / $$  $$   |
-$$ |/    | $$$$$$  |$$$$$$/   /$$$$$$  |      $$$$$$$$$$/ 
-$$ |$$$$ | /    $$ |  $$ | __ $$ |  $$ |      / $$  $$   |
-$$ \__$$ |/$$$$$$$ |  $$ |/  |$$ \__$$ |      $$$$$$$$$$/ 
-$$    $$/ $$    $$ |  $$  $$/ $$    $$/         $$ |$$ |  
- $$$$$$/   $$$$$$$/    $$$$/   $$$$$$/          $$/ $$/                                      
-        """
-print "1. 1 Player (vas a jugar con la consola)"
-print "2. 2 Players"
+print("1. 1 Player (vas a jugar con la consola)")
+print("2. 2 Players")
 modo = input(">> ")
 
 
@@ -85,20 +69,8 @@ modo = input(">> ")
 while True:
     if ganar(tablero) or ganar(tablero) == "empate":
         break
-    system("cls")
-    system("title _-Juego en progreso...-_")
-    print """
-       _                                                                                      
-      | |                                                                                     
-      | |_   _  ___  __ _  ___     ___ _ __    _ __  _ __ ___   __ _ _ __ ___  ___  ___       
-  _   | | | | |/ _ \/ _` |/ _ \   / _ \ '_ \  | '_ \| '__/ _ \ / _` | '__/ _ \/ __|/ _ \      
- | |__| | |_| |  __/ (_| | (_) | |  __/ | | | | |_) | | | (_) | (_| | | |  __/\__ \ (_) | _ _ 
-  \____/ \__,_|\___|\__, |\___/   \___|_| |_| | .__/|_|  \___/ \__, |_|  \___||___/\___(_|_|_)
-                     __/ |                    | |               __/ |                         
-                    |___/                     |_|              |___/
-         """
 
-    print """
+    print ("""
                                   
                                          |      |       
                                       %s  |  %s   |  %s    
@@ -108,56 +80,44 @@ while True:
                                       %s  |  %s   |  %s          
                                          |      |            
                                   
-     """ % (tablero[0],tablero[1],tablero[2], tablero[3],tablero[4],tablero[5], tablero[6],tablero[7],tablero[8])
+     """ % (tablero[0],tablero[1],tablero[2], tablero[3],tablero[4],tablero[5], tablero[6],tablero[7],tablero[8]))
     # turno de X
     if p == 1:
-        pregunta = raw_input("Turno de X. Ingrese su jugada: ")
+        pregunta = input("Turno de X. Ingrese su jugada: ")
         if validar(pregunta) and validar(tablero[int(pregunta)-1]):
             tablero[int(pregunta)-1] = "X"
             p = p*-1
         else:
-            print "Jugada invalida. Intentelo nuevamente"
-            raw_input()
+            print("Jugada invalida. Intentelo nuevamente")
+            input()
     # turno de O
-    elif p == -1 and modo == 2:
-        pregunta = raw_input("Turno de O. Ingrese su jugada: ")
+    elif p == -1 and int(modo) == 2:
+        pregunta = input("Turno de O. Ingrese su jugada: ")
         if validar(pregunta) and validar(tablero[int(pregunta)-1]):
             tablero[int(pregunta)-1] = "O"
             p = p*-1
         else:
-            print "Jugada invalida. Intentelo nuevamente"
-            raw_input()
+            print("Jugada invalida. Intentelo nuevamente")
+            input()
     # robot pensando
-    elif p == -1 and modo == 1:
+    elif p == -1 and int(modo) == 1:
         r = robot(tablero)
-        print "Vamo' a pensar..."
+        print("Pensando...")
         time.sleep(randint(1,5))
         tablero[r-1] = "O"
         p = p*-1
     # si no, bota al usuario del programa
     else:
-        print "Error"
-        raw_input()
+        print("Error")
+        input()
         exit()
 
 
 
-system("cls")
-# final del juego
-print """
-  ______ _             _      _     _                                  __  
- |  ____(_)           | |    | |   (_)                              _  \ \ 
- | |__   _ _ __     __| | ___| |    _ _   _  ___  __ _  ___        (_)  | |
- |  __| | | '_ \   / _` |/ _ \ |   | | | | |/ _ \/ _` |/ _ \            | |
- | |    | | | | | | (_| |  __/ |   | | |_| |  __/ (_| | (_) | _ _   _   | |
- |_|    |_|_| |_|  \__,_|\___|_|   | |\__,_|\___|\__, |\___(_|_|_) (_)  | |
-                                  _/ |            __/ |                /_/ 
-                                 |__/            |___/
-
-"""
+print("Fin del juego!")
 
 
-print """
+print ("""
                                   
                                          |      |       
                                       %s  |  %s   |  %s    
@@ -166,91 +126,37 @@ print """
                                   -------|------|-------
                                       %s  |  %s   |  %s          
                                          |      |       
-     """ % (tablero[0],tablero[1],tablero[2], tablero[3],tablero[4],tablero[5], tablero[6],tablero[7],tablero[8])
-raw_input("Fin del juego, enter para seguir")
+     """ % (tablero[0],tablero[1],tablero[2], tablero[3],tablero[4],tablero[5], tablero[6],tablero[7],tablero[8]))
+input("Fin del juego, enter para seguir")
 
 if ganar(tablero) == "empate":
     i = 0
 else:
     i = 1
 while True:
-    system("cls")
     if i == 1 and p == -1:
-        print """
-             _____  __  __          ___       _
-          * |  __ \/_ | \ \        / (_)     | | *
-            | |__) || |  \ \  /\  / / _ _ __ | | 
-          * |  ___/ | |   \ \/  \/ / | | '_ \| | * 
-            | |     | |    \  /\  /  | | | | |_|
-          * |_|     |_|     \/  \/   |_|_| |_(_) *
-             *  *  *  *  *  *  *  *  *  *  *  *  * 
-
-                                             
-                                                               
-             """
+        print("ha ganado el jugador uno!")
         time.sleep(0.3)
         i = i*-1
+        exit()
     elif i == -1 and p == -1:
-
-        print """
-            _____  __  __          ___       _
-         * |  __ \/_ | \ \        / (_)     | | *
-           | |__) || |  \ \  /\  / / _ _ __ | | 
-         * |  ___/ | |   \ \/  \/ / | | '_ \| | * 
-           | |     | |    \  /\  /  | | | | |_|
-         * |_|     |_|     \/  \/   |_|_| |_(_) *
-           *  *  *  *  *  *  *  *  *  *  *  *  *          
-                                                               
-             """
+        print("ha ganado el jugador uno!")
         time.sleep(0.3)
         i = i*-1
+        exit()
     if i == 1 and p == 1:
-        print """
-          _____ ___   __          ___       _  
-       * |  __ \__ \  \ \        / (_)     | | *
-         | |__) | ) |  \ \  /\  / / _ _ __ | | 
-       * |  ___/ / /    \ \/  \/ / | | '_ \| | *
-         | |    / /_     \  /\  /  | | | | |_| 
-       * |_|   |____|     \/  \/   |_|_| |_(_) *
-         *  *  *  *  *  *  *  *  *  *  *  *  *       
-
-                                             
-                                                               
-             """
+        print("ha ganado el jugador dos!")
         time.sleep(0.3)
         i = i*-1
+        exit()
     elif i == -1 and p == 1:
-
-        print """
-          _____ ___   __          ___       _  
-         |  __ \__ \  \ \        / (_)     | | 
-       * | |__) | ) |  \ \  /\  / / _ _ __ | | *
-         |  ___/ / /    \ \/  \/ / | | '_ \| | 
-       * | |    / /_     \  /\  /  | | | | |_| *
-         |_|   |____|     \/  \/   |_|_| |_(_) 
-          *  *  *  *  *  *  *  *  *  *  *  *
-    
-                                                               
-             """
+        print("ha ganado el jugador dos!")
         time.sleep(0.3)
         i = i*-1
+        exit()
     elif i == 0:
-        system("title _-Empate, nadie gano-_")
-
-        print """
-  ______                       _       _            __
- |  ____|                     | |     | |      _   / /
- | |__   _ __ ___  _ __   __ _| |_ ___| |     (_) | | 
- |  __| | '_ ` _ \| '_ \ / _` | __/ _ \ |         | | 
- | |____| | | | | | |_) | (_| | ||  __/_|      _  | | 
- |______|_| |_| |_| .__/ \__,_|\__\___(_)     (_) | | 
-                  | |                              \_\
-        |_|
-
-                                                
-             """
-        raw_input()
-        system("cls")
+        print("ha sido un empate! presiona ENTER para continuar")
+        input()
         break
     
 
